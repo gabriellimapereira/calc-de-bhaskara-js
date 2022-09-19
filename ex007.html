@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Bháskara</title>
+    <link rel="stylesheet" href="style7.css">
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
+        body{
+    background-image: linear-gradient(95deg, #d3ccd0, #DDC67B, #99621E);
+    background-attachment: 100%;
+    font: normal 25pt Arial;
+}
+
+        #botao:hover{
+        background-color: #d3ccd0;
+}
+
+    #botao{
+    background-color: white;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+    .numero{
+    border: 1px solid #333;
+}
+
+    div#container{
+    display: flexbox;
+    text-align: center;
+}
+
+    input{
+    font: normal 10pt Arial;
+    width: 75px;
+    height: 20px;
+    line-height: 2px;
+    margin-bottom: 15pt;
+}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id = "box">
+        <h1>Bháskara</h1> </div>
+        <input type= "number" name="txtn1" id="txtn1" class = "numero">
+        <input type= "number" name="txtn1" id="txtn2" class = "numero">
+        <input type= "number" name= "txtn1" id= "txtn3" class = "numero">
+        <input type="button" value="Calcular" onclick="bhas()" id="botao">
+        <div id ="resu1" class="resultados">Resultado do X positivo</div>
+        <div id ="resu2" class="resultados">Resultado do X negativo</div>
+        <script>
+            var clic = window.document.getElementById('botao')
+                 clic.addEventListener('click', clicar)
+                 clic.addEventListener('mouseout', sair)
+                 clic.addEventListener('mouseenter', entrar)
+
+            function clicar(){
+                botao.style.backgroundColor = '#'
+                botao.style.fontWeigth = 'bold' 
+            }
+
+            function entrar(){
+                botao.style.backgroundColor = '#d3ccd0'
+            }
+            
+            function sair(){  
+                botao.style.backgroundColor = 'white'
+            }
+            
+            function bhas(){
+                var n1 = window.document.getElementById('txtn1')
+                var n2 = window.document.getElementById('txtn2')
+                var n3= window.document.getElementById('txtn3')
+                var res1 = window.document.getElementById('resu1')
+                var res2 = window.document.getElementById('resu2')
+                var a = Number.parseFloat(n1.value)
+                var b = Number.parseFloat(n2.value)
+                var c = Number.parseFloat(n3.value)
+                var delta = b**2 - 4*a*c
+                if (delta < 0) {
+                    res1.innerHTML = "<p>Resultado inválido!</p>"
+                    res2.innerHTML = `<p>O delta foi ${delta}, negativo. Portanto, o cálculo não pode ser efetuado. Tente com outros valores.</p>`
+                } else {
+                var resul1 = Number.parseFloat((-1*b + Math.sqrt(delta))/(a*2))
+                var resul2 = Number.parseFloat((-1*b - Math.sqrt(delta))/(a*2))
+                var result1 = resul1.toFixed(5)
+                var result2 = resul2.toFixed(5)
+                res1.innerHTML = `<p>O resultado do X positivo é <strong> ${result1}<strong></p> `
+                res2.innerHTML = `<p>O resultado do X negativo é <strong> ${result2}<strong></p>`
+                      }
+            }
+        </script>
+    </div>
+</body>
+</html>
